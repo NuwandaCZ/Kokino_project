@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Kokino</title>
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!--So the footer doesnt cover content of the page -->
+<style>
+    body {
+      background-color: gainsboro;
+    }
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #383838;
+      color:#fff;
+    }
+    #footer1{
+    margin-left:2%;
+    float:left;
+    }
+    #footer2{
+    margin-right:2%;
+    float:right;
+    }
+    #contactContainer{
+        padding-top: 50px;
+    }
+</style>
+</head>
+
+<body>
+{% include 'pages/navbar.html' %}
+{% block content %}
+    replace me
+{% endblock%}
+</body>
+
+<footer id="site-footer">
+<div id="footer1"><p>Ola, am ur amazin' footer, am i not? </p></div>
+<div id="footer2"><p> Created by kokino saucybois </p></div>
+</footer>
+</html>
