@@ -1,4 +1,13 @@
 {% load static %}
+
+<style>
+    .hello-msg{
+        font-size: 18px;
+        color: #ffffff;
+        margin-right: 20px;
+    }
+</style>
+
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
     <a href="/" class="navbar-brand mr-auto"><img src="{% static 'staticdir/poop.png' %}" width="32" height="32"/> Kokino project</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
@@ -13,7 +22,7 @@
                 <a class="nav-link" href="#">Alert</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Dirty stuff</a>
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
         </ul>
         <ul class="nav navbar-nav w-100 justify-content-center">
@@ -23,9 +32,18 @@
               </form>
         </ul>
         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+        {% if request.user.is_authenticated %}
+            <li class="hello-msg">Hello, {{ request.user }}</li>
+            <li><a class="hello-msg" href="{% url 'logout' %}">Logout</a> </li>
+        {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+        {% endif %}
         </ul>
     </div>
+
 </nav>

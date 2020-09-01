@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'Kokino.apps.KokinoConfig',
 
     'pages',
-    'bootstrap3',
+    'user',
+#    'bootstrap3',
     "bootstrap4",
 ]
 
@@ -59,8 +60,7 @@ ROOT_URLCONF = 'Kokino_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

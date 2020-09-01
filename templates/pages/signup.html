@@ -1,0 +1,51 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block content %}
+{#    <style>#}
+{#    #signupContainer {#}
+{#        padding-left: 25%;#}
+{#        padding-right: 25%;#}
+{#        padding-top: 5%;#}
+{#    }#}
+{#    </style>#}
+{#    <div class="container justify-content-center" id="signupContainer">#}
+{#        <h2>Sign up Form</h2>#}
+{#        <form>#}
+{#            <div class="form-group"> <label for="name">Name</label> <input type="name" class="form-control" id="name" placeholder="Enter your name"> </div>#}
+{#            <div class="form-group"> <label for="email">Email</label> <input type="email" class="form-control" id="email" placeholder="Enter email"> </div>#}
+{#            <div class="form-group"> <label for="pwd">Password</label> <input type="password" class="form-control" id="pwd" placeholder="Enter password"> </div>#}
+{#            <button class="btn btn-secondary " type="submit">Submit</button>#}
+{#        </form>#}
+{#    </div>#}
+
+    <h2>Register form</h2>
+    <form method="POST" action="">
+    {% csrf_token %}
+{#    {% for field in form %}#}
+{#        {{ field.label }}#}
+{#        {{ field }}#}
+{#    {% endfor %}#}
+    <ul>
+        <li>
+            {{ form.username.label }}
+            {{ form.username }}
+        </li>
+        <li>
+            {{ form.email.label }}
+            {{ form.email }}
+        </li>
+        <li>
+            {{ form.password1.label }}
+            {{ form.password1 }}
+        </li>
+        <li>
+            {{ form.password2.label }}
+            {{ form.password2 }}
+        </li>
+    </ul>
+
+        <input type="submit" name="Create User">
+    {{ form.errors }}
+    </form>
+
+{% endblock%}
