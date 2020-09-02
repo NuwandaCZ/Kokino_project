@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from pages.models import CreateUserForm
+from Forms.forms import CreateUserForm, ToiletForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -50,4 +50,17 @@ def signup_view(request, *args, **kwargs):
 
     context = {'form': form}
     return render(request, "pages/signup.html", context)
+
+
+@login_required(login_url='login')
+def create_toilet_view(request, *args, **kwargs):
+    form = ToiletForm()
+    if request.method == "POST":
+        form = ToiletForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'pages/toilet_form.html', context)
 

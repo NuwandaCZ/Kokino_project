@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'Kokino.apps.KokinoConfig',
 
     'pages',
-    'user',
+    'toilet',
 #    'bootstrap3',
     "bootstrap4",
 ]

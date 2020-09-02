@@ -6,41 +6,42 @@
         color: #ffffff;
         margin-right: 20px;
     }
+    #mainNavbar{
+        background-color: #145374;
+    }
+
+    #searchButton{
+       background-color: #000080 !important;
+    }
 </style>
 
-<nav class="navbar navbar-dark navbar-expand-md bg-dark">
-    <a href="/" class="navbar-brand mr-auto"><img src="{% static 'staticdir/poop.png' %}" width="32" height="32"/> Kokino project</a>
+<nav class="navbar navbar-expand-md" id="mainNavbar">
+    <a href="/" class="navbar-brand mr-auto text-white"><img src="{% static 'staticdir/poop.png' %}" width="32" height="32"/> Kokino project</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-collapse collapse" id="collapsingNavbar3">
+    <div class="navbar-collapse collapse pl-5" id="collapsingNavbar3">
         <ul class="navbar-nav w-100">
-            <li class="nav-item pl-5">
-                <a class="nav-link" href="#">Boner</a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Alert</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
             </li>
         </ul>
         <ul class="nav navbar-nav w-100 justify-content-center">
               <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Lookforpoop" aria-label="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="navbarButton">Search</button>
               </form>
         </ul>
         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
         {% if request.user.is_authenticated %}
-            <li class="hello-msg">Hello, {{ request.user }}</li>
-            <li><a class="hello-msg" href="{% url 'logout' %}">Logout</a> </li>
+            <li class="hello-msg text-white">Hello, {{ request.user }}</li>
+            <li><a class="hello-msg text-white" href="{% url 'logout' %}">Logout</a> </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                <a class="nav-link text-white" href="{% url 'signup' %}">Sign Up</a>
             </li>
         {% endif %}
         </ul>

@@ -1,0 +1,9 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block content %}
+    <form method="POST", action="">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="Create new poopy place!">
+    </form>
+{% endblock %}
