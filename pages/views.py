@@ -4,13 +4,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from Forms.forms import CreateUserForm, ToiletForm
+from toilet.models import Toilet
 from django.contrib.auth.decorators import login_required
 
 
 # @login_required(login_url='login') == nejses loglej, tak te to redirectne na url v uvozovkach
 def home_view(request, *args, **kwargs):
-    # return HttpResponse("<h1>Hello World </h1>")
-    return render(request, "pages/home.html", {})
+    context = {}
+    best_toilets = Toilet.objects.order_by('-rating')[:5]  # -rating = descending order_by; :5 = first five
+    context['best_toilets'] = best_toilets
+
+    return render(request, "pages/home.html", context)
 
 
 def contact_view(request, *args, **kwargs):

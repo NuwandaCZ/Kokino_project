@@ -16,8 +16,9 @@ class Toilet(models.Model):
         ('Hotel', 'Hotel'),
     )
     id          = models.IntegerField(primary_key=True, auto_created=True)
-    category   = models.CharField(max_length=120, null=False, choices=CATEGORY, default=None)
+    category    = models.CharField(max_length=120, null=False, choices=CATEGORY, default=None)
     place       = models.CharField(max_length=120)
+    rating      = models.FloatField()
 
     def __str__(self):
         return self.place

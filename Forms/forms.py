@@ -15,4 +15,4 @@ class CreateUserForm(UserCreationForm):
 class ToiletForm(ModelForm):
     class Meta:
         model = Toilet
-        fields = ['category', 'place']
+        fields = ['category', 'place', 'rating']
