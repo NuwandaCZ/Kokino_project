@@ -67,4 +67,3 @@ def create_toilet_view(request, *args, **kwargs):
 
     context = {'form': form}
     return render(request, 'pages/toilet_form.html', context)
-

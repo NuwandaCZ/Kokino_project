@@ -1,9 +1,101 @@
 {% extends 'pages/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <form method="POST", action="">
+
+    <style>
+        #toilet_form{
+            margin: 0 auto;
+            padding-top: 50px;
+            width:1000px;
+        }
+        #subBtn{
+            background-color: #ee6f57;
+        }
+
+
+    </style>
+    <form method="POST" action="" id="toilet_form">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" name="Create new poopy place!">
+        <h1>Header</h1>
+{#        TODO: Jebnout tam placeholdery, at to trochu vypada (napoveda, jak tam vypsat place etc.#}
+        <div class="form-row">
+            <div class="form-group col-md-4 mb-0">
+                {{ form.category|as_crispy_field }}
+                {{ form.place|as_crispy_field }}
+                {{ form.rating|as_crispy_field }}
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="form-group col-md-6 mb-0 mt-3">
+
+                <!-- TIDINESS -->
+                <div class="row">
+                    <div class="col-md-4 mb-0">
+                        Tidiness
+                    </div>
+                    <div class="col-md-5 mb-0 mt-3">
+                        <div id="rating1">
+                            <input type="radio" name="star1" id="r1star1"><label for="r1star1"></label>
+                            <input type="radio" name="star1" id="r1star2"><label for="r1star2"></label>
+                            <input type="radio" name="star1" id="r1star3"><label for="r1star3"></label>
+                            <input type="radio" name="star1" id="r1star4"><label for="r1star4"></label>
+                            <input type="radio" name="star1" id="r1star5"><label for="r1star5"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SPACE -->
+                <div class="row">
+                    <div class="col-md-4 mb-0">
+                        Space
+                    </div>
+                    <div class="col-md-5 mb-0 mt-3">
+                        <div id="rating2">
+                            <input type="radio" name="star2" id="r2star1"><label for="r2star1"></label>
+                            <input type="radio" name="star2" id="r2star2"><label for="r2star2"></label>
+                            <input type="radio" name="star2" id="r2star3"><label for="r2star3"></label>
+                            <input type="radio" name="star2" id="r2star4"><label for="r2star4"></label>
+                            <input type="radio" name="star2" id="r2star5"><label for="r2star5"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SMELL -->
+                <div class="row">
+                    <div class="col-md-4 mb-0">
+                        Smell
+                    </div>
+                    <div class="col-md-5 mb-0 mt-3">
+                        <div id="rating3">
+                            <input type="radio" name="star3" id="r3star1"><label for="r3star1"></label>
+                            <input type="radio" name="star3" id="r3star2"><label for="r3star2"></label>
+                            <input type="radio" name="star3" id="r3star3"><label for="r3star3"></label>
+                            <input type="radio" name="star3" id="r3star4"><label for="r3star4"></label>
+                            <input type="radio" name="star3" id="r3star5"><label for="r3star5"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESIGN -->
+                <div class="row">
+                    <div class="col-md-4 mb-0">
+                        Design
+                    </div>
+                    <div class="col-md-5 mb-0 mt-3">
+                        <div id="rating4">
+                            <input type="radio" name="star4" id="r4star1"><label for="r4star1"></label>
+                            <input type="radio" name="star4" id="r4star2"><label for="r4star2"></label>
+                            <input type="radio" name="star4" id="r4star3"><label for="r4star3"></label>
+                            <input type="radio" name="star4" id="r4star4"><label for="r4star4"></label>
+                            <input type="radio" name="star4" id="r4star5"><label for="r4star5"></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <input type="submit" value="Create new poopy place!" style="margin-left: 25%" class="btn" id="subBtn">
     </form>
 {% endblock %}

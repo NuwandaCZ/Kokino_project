@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Kokino.apps.KokinoConfig',
 
+    'crispy_forms',
     'pages',
     'toilet',
-#    'bootstrap3',
     "bootstrap4",
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

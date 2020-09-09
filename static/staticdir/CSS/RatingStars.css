@@ -1,0 +1,183 @@
+
+
+/*TODO: MOZNA STACI MIT 1X RATING NA VSECHNY RATINGY, DAT STEJNY ID. PREDTIM SE MI TAM MICHAL ATRIBUT " name="" "
+   , kterej s tim delal fakin bordel. uz nemam silu zkouset, takhle je tu diplikat jak pica, ale jede to*/
+
+#rating1{
+    position: sticky;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    display: flex;
+}
+#rating1 input{
+    display: none;
+}
+#rating1 label{
+    display: block;
+    cursor: pointer;
+    width: 25px;
+}
+#rating1 label:before{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 25px;
+    color: #101010;
+}
+#rating1 label:after{
+content: '\f005';
+font-family: fontAwesome;
+position: absolute;
+display: block;
+font-size: 25px;
+color: #fdcc0d;
+top: 0;
+opacity: 0;
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+#rating1 label:hover:after,
+#rating1 label:hover ~ label:after,
+#rating1 input:checked ~ label:after
+{
+    opacity: 1;
+}
+
+/*------------------------------------------------*/
+
+#rating2{
+    position: sticky;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    display: flex;
+}
+#rating2 input{
+    display: none;
+}
+#rating2 label{
+    display: block;
+    cursor: pointer;
+    width: 25px;
+}
+#rating2 label:before{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 25px;
+    color: #101010;
+}
+
+#rating2 label:after{
+content: '\f005';
+font-family: fontAwesome;
+position: absolute;
+display: block;
+font-size: 25px;
+color: #fdcc0d;
+top: 0;
+opacity: 0;
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+#rating2 label:hover:after,
+#rating2 label:hover ~ label:after,
+#rating2 input:checked ~ label:after
+{
+    opacity: 1;
+}
+
+/*----------------------------------------*/
+
+#rating3{
+    position: sticky;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    display: flex;
+}
+#rating3 input{
+    display: none;
+}
+#rating3 label{
+    display: block;
+    cursor: pointer;
+    width: 25px;
+}
+#rating3 label:before{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 25px;
+    color: #101010;
+}
+#rating3 label:after{
+content: '\f005';
+font-family: fontAwesome;
+position: absolute;
+display: block;
+font-size: 25px;
+color: #fdcc0d;
+top: 0;
+opacity: 0;
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+#rating3 label:hover:after,
+#rating3 label:hover ~ label:after,
+#rating3 input:checked ~ label:after
+{
+    opacity: 1;
+}
+
+/*--------------------------------------*/
+
+#rating4{
+    position: sticky;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(180deg);
+    display: flex;
+}
+#rating4 input{
+    display: none;
+}
+#rating4 label{
+    display: block;
+    cursor: pointer;
+    width: 25px;
+}
+#rating4 label:before{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 25px;
+    color: #101010;
+}
+#rating4 label:after{
+content: '\f005';
+font-family: fontAwesome;
+position: absolute;
+display: block;
+font-size: 25px;
+color: #fdcc0d;
+top: 0;
+opacity: 0;
+transition: .5s;
+text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+#rating4 label:hover:after,
+#rating4 label:hover ~ label:after,
+#rating4 input:checked ~ label:after
+{
+    opacity: 1;
+}
