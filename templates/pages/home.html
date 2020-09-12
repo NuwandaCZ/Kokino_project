@@ -22,11 +22,12 @@
 
 <div class="container pt-5">
     <div class="row">
-        <div class="col">
+
+        <div class="col-md-5">
             <div class="col-md">
-                <div class="card text-center bg-light  mb-3" style="max-width: 20rem" id="bestToilets">
+                <div class="card text-center bg-light  mb-3" style="max-width: 25rem" id="bestToilets">
                     <div class="card-header">
-                        <h5 class="card-title">All time favourite</h5>
+                        <h5 class="card-title">All time favourites</h5>
                     </div>
                     <div class="card-body">
                         {% include 'pages/best_toilets.html' %}
@@ -36,7 +37,7 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-md-4">
             <div class="col-md">
                 <div class="card text-center bg-light  mb-3" style="max-width: 20rem" id="worstToilets">
                     <div class="card-header">
@@ -49,7 +50,7 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-md-3">
             <div class="col-md">
                 <a href={% url 'create_toilet' %} type="button" class="btn btn-lg text-white" id="customButton">Help us find new toilet!</a>
             </div>

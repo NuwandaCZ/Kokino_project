@@ -31,7 +31,7 @@ def login_view(request, *args, **kwargs):
             login(request, user)
             return redirect('home')
         else:
-            messages.info(request, 'username OR password is incorrect')
+            messages.info(request, 'Username or password is incorrect')
             return render(request, "pages/login.html", context)
     return render(request, "pages/login.html", context)
 
@@ -63,7 +63,12 @@ def create_toilet_view(request, *args, **kwargs):
         form = ToiletForm(request.POST)
         if form.is_valid():
             form.save()
+
+            # count rating from all 4 attributes of toilet
+            toilet = Toilet.objects.all().order_by("-id")[0]
+            toilet.rating = (toilet.design + toilet.space + toilet.tidiness + toilet.smell)/4  # avg
+            toilet.save()
             return redirect('/')
 
     context = {'form': form}
-    return render(request, 'pages/toilet_form.html', context)
+    return render(request, 'pages/create_toilet_form.html', context)
