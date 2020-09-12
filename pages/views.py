@@ -63,7 +63,6 @@ def create_toilet_view(request, *args, **kwargs):
         form = ToiletForm(request.POST)
         if form.is_valid():
             form.save()
-
             # count rating from all 4 attributes of toilet
             toilet = Toilet.objects.all().order_by("-id")[0]
             toilet.rating = (toilet.design + toilet.space + toilet.tidiness + toilet.smell)/4  # avg
