@@ -9,7 +9,9 @@
     <tr>
         <th>{{ toilet.place }}</th>
         <th>{{ toilet.category }}</th>
-        <th>{{ toilet.rating }}</th>
+        <th>{{ toilet.overal_rating }}</th>
+        <th><a href={% url 'rate_toilet' user.id toilet.id %}>rate!</a></th>
+
     </tr>
     {% endfor %}
 </table>

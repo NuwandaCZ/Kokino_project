@@ -1,0 +1,87 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block content %}
+
+    <style>
+    #rateBtn{
+        background-color: #ee6f57;
+    }
+    #rating_form{
+        margin-top: 50px;
+        margin-left: 40%;
+    }
+    </style>
+<form method="POST" action="" id="rating_form">
+{% csrf_token %}
+    <div class="col-md-1"></div>
+
+    <div class="form-group col-md-6 mb-0 mt-3">
+
+        <!-- TIDINESS -->
+        <div class="row">
+            <div class="col-md-4 mb-0">
+                Tidiness:
+            </div>
+            <div class="col-md-5 mb-0 mt-3">
+                <div id="rating1">
+                    <input type="radio" name="tidiness" value="5" id="r1star1"><label for="r1star1"></label>
+                    <input type="radio" name="tidiness" value="4" id="r1star2"><label for="r1star2"></label>
+                    <input type="radio" name="tidiness" value="3" id="r1star3"><label for="r1star3"></label>
+                    <input type="radio" name="tidiness" value="2" id="r1star4"><label for="r1star4"></label>
+                    <input type="radio" name="tidiness" value="1" id="r1star5"><label for="r1star5"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPACE -->
+        <div class="row">
+            <div class="col-md-4 mb-0">
+                Space:
+            </div>
+            <div class="col-md-5 mb-0 mt-3">
+                <div id="rating2">
+                    <input type="radio" name="space" value="5" id="r2star1"><label for="r2star1"></label>
+                    <input type="radio" name="space" value="4" id="r2star2"><label for="r2star2"></label>
+                    <input type="radio" name="space" value="3" id="r2star3"><label for="r2star3"></label>
+                    <input type="radio" name="space" value="2" id="r2star4"><label for="r2star4"></label>
+                    <input type="radio" name="space" value="1" id="r2star5"><label for="r2star5"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SMELL -->
+        <div class="row">
+            <div class="col-md-4 mb-0">
+                Smell:
+            </div>
+            <div class="col-md-5 mb-0 mt-3">
+                <div id="rating3">
+                    <input type="radio" name="smell" value="5" id="r3star1"><label for="r3star1"></label>
+                    <input type="radio" name="smell" value="4" id="r3star2"><label for="r3star2"></label>
+                    <input type="radio" name="smell" value="3" id="r3star3"><label for="r3star3"></label>
+                    <input type="radio" name="smell" value="2" id="r3star4"><label for="r3star4"></label>
+                    <input type="radio" name="smell" value="1" id="r3star5"><label for="r3star5"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESIGN -->
+        <div class="row">
+            <div class="col-md-4 mb-0">
+                Design:
+            </div>
+            <div class="col-md-5 mb-0 mt-3">
+                <div id="rating4">
+                    <input type="radio" name="design" value="5" id="r4star1"><label for="r4star1"></label>
+                    <input type="radio" name="design" value="4" id="r4star2"><label for="r4star2"></label>
+                    <input type="radio" name="design" value="3" id="r4star3"><label for="r4star3"></label>
+                    <input type="radio" name="design" value="2" id="r4star4"><label for="r4star4"></label>
+                    <input type="radio" name="design" value="1" id="r4star5"><label for="r4star5"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Rate me!" class="btn"  style="margin-left: 10%" id="rateBtn">
+    {{ form.errors }}
+</form>
+{% endblock%}

@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from pages.views import home_view, contact_view, logout_view, login_view, signup_view, create_toilet_view
+from pages.views import home_view, contact_view, logout_view, login_view, signup_view,\
+    create_toilet_view, rate_toilet_view  #init_rating_view
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
@@ -26,6 +27,8 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('signup/', signup_view, name='signup'),
     path('create_toilet/', create_toilet_view, name='create_toilet'),
+    path('rate_toilet/<str:upk><str:tpk>', rate_toilet_view, name='rate_toilet'),
+#    path('rate_created_toilet/', init_rating_view, name='init_rate_toilet'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

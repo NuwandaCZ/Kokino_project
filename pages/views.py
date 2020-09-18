@@ -1,17 +1,23 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from Forms.forms import CreateUserForm, ToiletForm
+from django.urls import reverse
+
+from Forms.forms import CreateUserForm, ToiletForm, RatingForm
 from toilet.models import Toilet
+from rating.models import Rating
+from django.contrib.auth.models import User
+from django.db.models import Avg
+
 from django.contrib.auth.decorators import login_required
 
 
 # @login_required(login_url='login') == nejses loglej, tak te to redirectne na url v uvozovkach
 def home_view(request, *args, **kwargs):
     context = {}
-    best_toilets = Toilet.objects.order_by('-rating')[:5]  # -rating = descending order_by; :5 = first five
+    best_toilets = Toilet.objects.order_by('-overal_rating')[:5]  # -rating = descending order_by; :5 = first five
     context['best_toilets'] = best_toilets
 
     return render(request, "pages/home.html", context)
@@ -63,11 +69,57 @@ def create_toilet_view(request, *args, **kwargs):
         form = ToiletForm(request.POST)
         if form.is_valid():
             form.save()
-            # count rating from all 4 attributes of toilet
-            toilet = Toilet.objects.all().order_by("-id")[0]
-            toilet.rating = (toilet.design + toilet.space + toilet.tidiness + toilet.smell)/4  # avg
+
+            current_user = request.user
+            upk = current_user.id
+            current_toilet = Toilet.objects.latest('id')
+            tpk = current_toilet.id
+            return HttpResponseRedirect(reverse("rate_toilet", args=[upk, tpk]))
+
+    context = {'form': form}
+    return render(request, 'pages/create_toilet_form.html', context)
+
+
+@login_required(login_url='login')
+def rate_toilet_view(request, upk, tpk, *args, **kwargs):
+
+    toilet  = Toilet.objects.get(id=tpk)
+    user    = User.objects.get(id=upk)
+
+    needs_creation = False
+    try:
+        rating = Rating.objects.get(user_id=upk, toilet_id=tpk)
+    except Rating.DoesNotExist:
+        needs_creation = True
+        pass
+    finally:
+        if needs_creation:
+            rating = Rating.objects.create(toilet_id=tpk, user_id=upk)
+
+    form = RatingForm(instance=rating)
+
+    if request.method == "POST":
+        form = RatingForm(request.POST, instance=rating)
+        if form.is_valid():
+            form.save()
+
+            toilet = Toilet.objects.get(id=tpk)
+            relevant_ratings = Rating.objects.filter(toilet_id=tpk)
+
+            smell       = relevant_ratings.aggregate(Avg('smell'))
+            design      = relevant_ratings.aggregate(Avg('design'))
+            space       = relevant_ratings.aggregate(Avg('space'))
+            tidiness    = relevant_ratings.aggregate(Avg('tidiness'))
+
+            toilet.overal_smell     = smell['smell__avg']
+            toilet.overal_design    = design['design__avg']
+            toilet.overal_space     = space['space__avg']
+            toilet.overal_tidiness  = tidiness['tidiness__avg']
+
+            toilet.overal_rating = (toilet.overal_design + toilet.overal_space + toilet.overal_tidiness
+                                    + toilet.overal_smell)/4  # avg
             toilet.save()
             return redirect('/')
 
     context = {'form': form}
-    return render(request, 'pages/create_toilet_form.html', context)
+    return render(request, 'pages/rate_toilet_form.html', context)
