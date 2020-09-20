@@ -14,10 +14,18 @@ from django.db.models import Avg
 from django.contrib.auth.decorators import login_required
 
 
-# @login_required(login_url='login') == nejses loglej, tak te to redirectne na url v uvozovkach
 def home_view(request, *args, **kwargs):
     context = {}
-    best_toilets = Toilet.objects.order_by('-overal_rating')[:5]  # -rating = descending order_by; :5 = first five
+    best_toilets = Toilet.objects.order_by('-overal_rating')[:5]
+    is_rated = {}
+    for i in range(len(best_toilets)):
+        try:
+            rating = Rating.objects.get(user=request.user, toilet_id=best_toilets[i])
+            is_rated[best_toilets[i].id] = rating
+        except Rating.DoesNotExist:
+            pass
+
+    context['is_rated'] = is_rated
     context['best_toilets'] = best_toilets
 
     return render(request, "pages/home.html", context)
@@ -102,6 +110,8 @@ def rate_toilet_view(request, upk, tpk, *args, **kwargs):
         form = RatingForm(request.POST, instance=rating)
         if form.is_valid():
             form.save()
+            rating.rating = (rating.tidiness + rating.smell + rating.design + rating.space)/4
+            rating.save()
 
             toilet = Toilet.objects.get(id=tpk)
             relevant_ratings = Rating.objects.filter(toilet_id=tpk)

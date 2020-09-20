@@ -12,3 +12,4 @@ class Rating(models.Model):
     space       = models.IntegerField(default=0)
     smell       = models.IntegerField(default=0)
     design      = models.IntegerField(default=0)
+    rating      = models.FloatField(default=0)

@@ -1,17 +1,24 @@
 <!--TODO: Nahradit ohavnej table necim peknym-->
+
 <table class="table">
     <tr>
         <th>Place</th>
         <th>Category</th>
         <th>Rating</th>
+        <th>Your rating</th>
     </tr>
     {% for toilet in best_toilets %}
     <tr>
         <th>{{ toilet.place }}</th>
         <th>{{ toilet.category }}</th>
         <th>{{ toilet.overal_rating }}</th>
-        <th><a href={% url 'rate_toilet' user.id toilet.id %}>rate!</a></th>
-
+        {% if is_rated|get_item:toilet.id %}
+            {% with current_toilet=is_rated|get_item:toilet.id %}
+            <th><a href={% url 'rate_toilet' user.id toilet.id %}>{{ current_toilet.rating }}</a></th>
+            {% endwith %}
+        {% else %}
+            <th><a href={% url 'rate_toilet' user.id toilet.id %}>rate!</a></th>
+        {% endif %}
     </tr>
     {% endfor %}
 </table>
