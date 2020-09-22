@@ -18,12 +18,13 @@ def home_view(request, *args, **kwargs):
     context = {}
     best_toilets = Toilet.objects.order_by('-overal_rating')[:5]
     is_rated = {}
-    for i in range(len(best_toilets)):
-        try:
-            rating = Rating.objects.get(user=request.user, toilet_id=best_toilets[i])
-            is_rated[best_toilets[i].id] = rating
-        except Rating.DoesNotExist:
-            pass
+    if request.user.is_authenticated:
+        for i in range(len(best_toilets)):
+            try:
+                rating = Rating.objects.get(user=request.user, toilet_id=best_toilets[i])
+                is_rated[best_toilets[i].id] = rating
+            except Rating.DoesNotExist:
+                pass
 
     context['is_rated'] = is_rated
     context['best_toilets'] = best_toilets
